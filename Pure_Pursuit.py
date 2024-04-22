@@ -13,7 +13,10 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)) +
                 "/../../MotionPlanning/")
 
 import Control.draw as draw
-import CurvesGenerator.reeds_shepp as rs
+import reeds_shepp as rs
+
+import hybrid_astar
+
 
 
 class C:
@@ -28,14 +31,14 @@ class C:
     dc = 0.0
 
     # vehicle config
-    RF = 3.3  # [m] distance from rear to vehicle front end of vehicle
-    RB = 0.8  # [m] distance from rear to vehicle back end of vehicle
-    W = 2.4  # [m] width of vehicle
+    RF = 4.5  # [m] distance from rear to vehicle front end of vehicle
+    RB = 1.0  # [m] distance from rear to vehicle back end of vehicle
+    W = 3.0  # [m] width of vehicle
     WD = 0.7 * W  # [m] distance between left-right wheels
-    WB = 2.5  # [m] Wheel base
-    TR = 0.44  # [m] Tyre radius
-    TW = 0.7  # [m] Tyre width
-    MAX_STEER = 0.30
+    WB = 3.5  # [m] Wheel base
+    TR = 0.5  # [m] Tyre radius
+    TW = 1  # [m] Tyre width
+    MAX_STEER = 0.6
     MAX_ACCELERATION = 5.0
 
 
@@ -230,12 +233,30 @@ def generate_path(s):
 
 def main():
     # generate path: [x, y, yaw]
-    states = [(0, 0, 0), (20, 15, 0), (35, 20, 90), (40, 0, 180),
-              (20, 0, 120), (5, -10, 180), (15, 5, 30)]
+    #states = [(0, 0, 0), (20, 15, 0), (35, 20, 90), (40, 0, 180),
+    #          (20, 0, 120), (5, -10, 180), (15, 5, 30)]
 
     # states = [(-3, 3, 120), (10, -7, 30), (10, 13, 30), (20, 5, -25),
     #           (35, 10, 180), (30, -10, 160), (5, -12, 90)]
 
+    
+    
+    path = hybrid_astar.main()
+    x = path.x
+    y = path.y
+    yaw = np.rad2deg(path.yaw)
+    #direct = path.direction
+    
+    print(x)
+    print(type(x[0]))
+    print((y))
+    print(type(y[0]))
+    print((yaw))
+    print(type(yaw[0]))
+    
+    states = list(zip(x,y,yaw))
+    
+    
     x, y, yaw, direct, path_x, path_y = generate_path(states)
 
     # simulation

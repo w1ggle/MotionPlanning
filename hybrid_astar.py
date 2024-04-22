@@ -18,7 +18,7 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)) +
 
 import HybridAstarPlanner.astar as astar
 import HybridAstarPlanner.draw as draw
-import CurvesGenerator.reeds_shepp as rs
+import reeds_shepp as rs
 
 
 class C:  # Parameter config
@@ -506,11 +506,19 @@ def main():
         print("Searching failed!")
         return
 
+    return path
     x = path.x
     y = path.y
     yaw = path.yaw
     direction = path.direction
 
+    print(type(x))
+    print(type(x[0]))
+    print(type(y))
+    print(type(y[0]))
+    print(type(yaw))
+    print(type(yaw[0]))
+    
     for k in range(len(x)):
         plt.cla()
         plt.plot(ox, oy, "sk")
