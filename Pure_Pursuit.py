@@ -38,7 +38,7 @@ class C:
     WB = 3.5  # [m] Wheel base
     TR = 0.5  # [m] Tyre radius
     TW = 1  # [m] Tyre width
-    MAX_STEER = 0.6
+    MAX_STEER = 0.35
     MAX_ACCELERATION = 5.0
 
 
@@ -244,9 +244,10 @@ def main():
     path = hybrid_astar.main()
     #x = list(map(int, ))
     #y = list(map(int, path.y))
-    x = path.x
-    y = path.y
+    x = list(map(int, path.x))
+    y = list(map(int, path.y))
     yaw = np.rad2deg(path.yaw)
+    yaw = [int(i) for i in yaw]
     #test = [int(i) for i in yaw]
     #direct = path.direction
     x= x[::30]
@@ -254,13 +255,14 @@ def main():
     yaw = yaw[::30]
     print(type(x))
     print(type(x[0]))
-    #print((y))
-    #print(type(y[0]))
-    #print((yaw))
-    #print(type(yaw[0]))
+    print(type(y))
+    print(type(y[0]))
+    print(type(yaw))
+    print(type(yaw[0]))
     
     states = list(zip(x,y,yaw))
     
+    print(states)
     
     x, y, yaw, direct, path_x, path_y = generate_path(states)
 

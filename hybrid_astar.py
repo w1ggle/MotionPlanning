@@ -46,7 +46,7 @@ class C:  # Parameter config
     WB = 3.5  # [m] Wheel base
     TR = 0.5  # [m] Tyre radius
     TW = 1  # [m] Tyre width
-    MAX_STEER = 0.6  # [rad] maximum steering angle
+    MAX_STEER = 0.35  # [rad] maximum steering angle
 
 
 class Node:
