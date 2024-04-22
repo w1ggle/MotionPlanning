@@ -13,12 +13,14 @@ import numpy as np
 import matplotlib.pyplot as plt
 import scipy.spatial.kdtree as kd
 
-sys.path.append(os.path.dirname(os.path.abspath(__file__)) +
-                "/../../MotionPlanning/")
+#print(os.path.dirname(os.path.abspath(__file__)) +
+#                "/../../MotionPlanning/")
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))# +
+#                "/../../MotionPlanning/")
 
 import HybridAstarPlanner.astar as astar
 import HybridAstarPlanner.draw as draw
-import reeds_shepp as rs
+import CurvesGenerator.reeds_shepp as rs
 
 
 class C:  # Parameter config

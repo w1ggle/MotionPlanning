@@ -9,11 +9,11 @@ import math
 import numpy as np
 import matplotlib.pyplot as plt
 
-sys.path.append(os.path.dirname(os.path.abspath(__file__)) +
-                "/../../MotionPlanning/")
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))# +
+#                "/../../MotionPlanning/")
 
 import Control.draw as draw
-import reeds_shepp as rs
+import CurvesGenerator.reeds_shepp as rs
 
 import hybrid_astar
 
@@ -242,17 +242,22 @@ def main():
     
     
     path = hybrid_astar.main()
+    #x = list(map(int, ))
+    #y = list(map(int, path.y))
     x = path.x
     y = path.y
     yaw = np.rad2deg(path.yaw)
+    #test = [int(i) for i in yaw]
     #direct = path.direction
-    
-    print(x)
+    x= x[::30]
+    y= y[::30]
+    yaw = yaw[::30]
+    print(type(x))
     print(type(x[0]))
-    print((y))
-    print(type(y[0]))
-    print((yaw))
-    print(type(yaw[0]))
+    #print((y))
+    #print(type(y[0]))
+    #print((yaw))
+    #print(type(yaw[0]))
     
     states = list(zip(x,y,yaw))
     
